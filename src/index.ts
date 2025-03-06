@@ -34,6 +34,7 @@ const loadCommands = async (): Promise<DiscordCommand<any>[]> => {
 
     for (const commandFile of commandFiles) {
         const commandPath = path.join(commandFolderPath, commandFile);
+        console.log(commandPath);
         const module = await import(commandPath);
 
         if (module.default) {
@@ -62,4 +63,4 @@ const deploy = async (commandData: any) => {
 
 init(new Client({
     intents: []
-} as ClientOptions));
+} as ClientOptions)).then(r => console.log("Successfully Initialized."));

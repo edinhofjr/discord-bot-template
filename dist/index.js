@@ -73,6 +73,7 @@ const loadCommands = () => __awaiter(void 0, void 0, void 0, function* () {
     const commands = [];
     for (const commandFile of commandFiles) {
         const commandPath = path.join(commandFolderPath, commandFile);
+        console.log(commandPath);
         const module = yield Promise.resolve(`${commandPath}`).then(s => __importStar(require(s)));
         if (module.default) {
             commands.push(typeof module.default === "function" ? module.default() : module.default);
@@ -92,4 +93,4 @@ const deploy = (commandData) => __awaiter(void 0, void 0, void 0, function* () {
 });
 init(new discord_js_1.Client({
     intents: []
-}));
+})).then(r => console.log("Successfully Initialized."));
